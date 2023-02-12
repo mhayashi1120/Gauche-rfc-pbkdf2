@@ -4,7 +4,7 @@
 
 (define-gauche-package "Gauche-rfc-pbkdf2"
   ;;
-  :version "1.0"
+  :version "0.5.0"
 
   ;; Description of the package.  The first line is used as a short
   ;; summary.
