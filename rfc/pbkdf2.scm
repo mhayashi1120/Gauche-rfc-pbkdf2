@@ -126,11 +126,11 @@
   (assume-type len <integer>)
   (assume-type block-size <integer>)
   (and salt (assume-type salt <u8vector>))
-  
+
   (check-positive iter "iter")
   (check-positive len "len")
   (check-positive block-size "block-size")
-  
+
   (when (< (* #xffffffff block-size) len)
     (error "Invalid length of request" len))
 

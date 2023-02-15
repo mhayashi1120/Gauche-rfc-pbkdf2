@@ -125,7 +125,7 @@
      (test
       (hex->u8vector "9c ca d6 d4 68 77 0c d5 1b 10 e6 a6 87 21 be 61 1a 8b 4d 28 26 01 db 3b 36 be 92 46 91 5e c8 2a")
       (pbkdf2-sha1 "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" 1200 32 (string->u8vector "pass phrase exceeds block size"))))
-                 
+
    (test-log "Testing ~s" (with-output-to-string (^[] (write-bytevector #u8(#xf0 #x9d #x84 #x9e)))))
 
    (test-group "Pass phrase = g-clef (0xf09d849e) (musical-symbol UTF-8 sequence)"
