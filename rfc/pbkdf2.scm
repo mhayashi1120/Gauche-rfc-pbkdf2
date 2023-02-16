@@ -65,9 +65,10 @@
     [else
      (error "Not a supported hasher" hasher)]))
 
-;; -> <integer>
+;; Compute octet size of digest generate by <PRF>
+;; <PRF> -> <integer>
 (define (compute-block-size prf)
-  (u8vector-length (prf "" #u8())))
+  ($ u8vector-length $ prf "" #u8()))
 
 ;;;
 ;;; # API
@@ -76,6 +77,10 @@
 ;; ## Basic:
 ;;
 ;; <PRF>     ::= (PASSWORD:<string> INPUT:<u8vector>) -> <u8vector>
+;;
+;; ### <PRF>
+;;
+;; Pseudo Random Function maybe use HMAC algorithm.
 
 ;; TODO consider rename prnd -> prf
 
@@ -148,7 +153,10 @@
                     :block-size (~ hasher*'hmac-block-size)
                     :salt salt)))
 
-;; ## Generate HMAC procedure.
+;; ## Generate common HMAC procedure.
+;; NOTE: rfc2898 doesn't forcibly use HMAC (maybe i think...) but almost
+;;    preceeding implementation (e.g. ruby) use just HMAC. i don't enough
+;;    know about it.
 ;; - HASHER : <message-digest-algorithm>
 ;; -> <PRF>
 (define (generate-hmac hasher)
