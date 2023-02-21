@@ -8,8 +8,8 @@
 
   ;; Description of the package.  The first line is used as a short
   ;; summary.
-  :description "Sample package.scm\n\
-                Write your package description here."
+  :description "Implementation of PBKDF2 \n\
+                Come from RFC2898."
 
   ;; List of dependencies.
   ;; Example:
@@ -21,7 +21,7 @@
   ;; NB: This will be recognized >= Gauche 0.9.7.
   ;; Example:
   ;;      :providing-modules (util.algorithm1 util.algorithm1.option)
-  :providing-modules (gauche_rfc_pbkdf2)
+  :providing-modules (rfc.pbkdf2)
 
   ;; List name and contact info of authors.
   ;; e.g. ("Eva Lu Ator <eval@example.com>"
@@ -35,11 +35,9 @@
 
   ;; List licenses
   ;; e.g. ("BSD")
-  :licenses ()
+  :licenses ("BSD")
 
-  ;; Homepage URL, if any.
-  ; :homepage "http://example.com/Gauche-rfc-pbkdf2/"
+  :homepage "https://github.com/mhayashi1120/Gauche-rfc-pbkdf2/"
 
-  ;; Repository URL, e.g. github
-  ; :repository "http://example.com/Gauche-rfc-pbkdf2.git"
+  :repository "https://github.com/mhayashi1120/Gauche-rfc-pbkdf2.git"
   )
