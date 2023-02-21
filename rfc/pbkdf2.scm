@@ -140,7 +140,8 @@
   ($ list->u8vector $ DK len))
 
 ;; ## High level api of `compute-pbkdf2`
-;; - :hasher : {sha256 | sha512 | sha224 | sha384 | sha1 | md5} | <digest-class>
+;; - :hasher : {sha256 | sha512 | sha224 | sha384 | sha1 | md5} |
+;;      <message-digest-algorithm>
 ;; -> <u8vector>
 (define (compute-pbkdf2-hmac
          password iter len
