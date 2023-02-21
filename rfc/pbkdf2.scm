@@ -82,21 +82,19 @@
 ;;
 ;; Pseudo Random Function maybe use HMAC algorithm.
 
-;; TODO consider rename prnd -> prf
-
 ;; ## Low level API
 ;; - PASSWORD : <string> | <u8vector>
 ;; - ITER : <integer> Count of iteration.
 ;; - LEN : <integer> Request length of  result.
-;; - :prnd : <PRF>
+;; - :prf : <PRF>
 ;; - :block-size : <integer> To suppress the overhead of the compution,
-;;           should assign this value which is length of `prnd` generated.
+;;           should assign this value which is length of `prf` generated.
 ;; - :salt : <u8vector>
 ;; -> <u8vector>[LEN]
 (define (compute-pbkdf2
          password iter len
-         :key (prnd (generate-hmac <sha256>))
-         (block-size (compute-block-size prnd))
+         :key (prf (generate-hmac <sha256>))
+         (block-size (compute-block-size prf))
          (salt #u8()))
 
   ;; <string>
@@ -110,7 +108,7 @@
 
   ;; -> <u8vector>
   (define (F* U :optional (i 1))
-    (let1 Ux (prnd P U)
+    (let1 Ux (prf P U)
       (cond
        [(= i iter) Ux]
        [else
@@ -149,7 +147,7 @@
          :key (hasher 'sha256) (salt #u8()))
   (let1 hasher* (ensure-hasher hasher)
     (compute-pbkdf2 password iter len
-                    :prnd (generate-hmac hasher*)
+                    :prf (generate-hmac hasher*)
                     :block-size (~ hasher*'hmac-block-size)
                     :salt salt)))
 
