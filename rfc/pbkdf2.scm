@@ -36,10 +36,6 @@
   ;; Get metaclass value
   (slot-ref hasher 'hmac-block-size))
 
-(define (check-positive i name)
-  (unless (positive? i)
-    (errorf "Argument `~a` must be a positive number (But ~a)" name i)))
-
 (define (with-input-from-bytes b thunk)
   (let1 op (open-input-bytevector b)
     (unwind-protect
@@ -65,7 +61,7 @@
     [else
      (error "Not a supported hasher" hasher)]))
 
-;; Compute octet size of digest generate by <PRF>
+;; Heuristic compute octet size of digest generate by <PRF>
 ;; <PRF> -> <integer>
 (define (compute-block-size prf)
   ($ u8vector-length $ prf "" #u8()))
@@ -126,13 +122,14 @@
         (append T (DK size* (+ i 1)))])))
 
   (assume-type iter <integer>)
+  (assume (< 0 iter))
   (assume-type len <integer>)
+  (assume (< 0 len))
+  (assume-type prf <procedure>)
+  (assume (= (arity prf) 2))
   (assume-type block-size <integer>)
-  (and salt (assume-type salt <u8vector>))
-
-  (check-positive iter "iter")
-  (check-positive len "len")
-  (check-positive block-size "block-size")
+  (assume (< 0 block-size))
+  (assume-type salt <u8vector>)
 
   (when (< (* #xffffffff block-size) len)
     (error "Invalid length of request" len))
