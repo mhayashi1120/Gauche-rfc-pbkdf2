@@ -13,8 +13,7 @@
 
 ;; <u8vector> -> <u8vector> -> <u8vector>
 (define (u8xor u1 u2)
-  (unless (= (u8vector-length u1) (u8vector-length u2))
-    (error "Not a same size" u1 u2))
+  (assume (= (u8vector-length u1) (u8vector-length u2)))
   (u8vector-map logxor u1 u2))
 
 ;; - SIZE : <integer>
@@ -157,6 +156,7 @@
 ;; -> <PRF>
 (define (generate-hmac hasher)
   (^ [pass input]
+    (assume-type input <u8vector>)
     (with-input-from-bytes
      input
      (^[]
