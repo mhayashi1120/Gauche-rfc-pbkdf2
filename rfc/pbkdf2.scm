@@ -15,7 +15,7 @@
 (define (u8xor u1 u2)
   (unless (= (u8vector-length u1) (u8vector-length u2))
     (error "Not a same size" u1 u2))
-  (u8vector-map (cut logxor <> <>) u1 u2))
+  (u8vector-map logxor u1 u2))
 
 ;; - SIZE : <integer>
 ;; - VALUE : <integer>
@@ -78,7 +78,7 @@
 ;;
 ;; Pseudo Random Function maybe use HMAC algorithm.
 
-;; ## Low level API
+;; ## Low level API. Maybe just use [=compute-pbkdf2-hmac]()
 ;; - PASSWORD : <string> | <u8vector>
 ;; - ITER : <integer> Count of iteration.
 ;; - LEN : <integer> Request length of  result.
@@ -136,7 +136,7 @@
 
   ($ list->u8vector $ DK len))
 
-;; ## High level api of `compute-pbkdf2`
+;; ## High level api of [=compute-pbkdf2]()
 ;; - :hasher : {sha256 | sha512 | sha224 | sha384 | sha1 | md5} |
 ;;      <message-digest-algorithm>
 ;; -> <u8vector>
