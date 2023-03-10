@@ -14,3 +14,9 @@ Support part of [RFC2898 (PBKDF2)](https://tools.ietf.org/rfc/rfc2898.txt)
 
 - compute-pbkdf2-hmac
 
+
+# Docker
+
+```
+make docker-check
+```
