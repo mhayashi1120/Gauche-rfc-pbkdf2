@@ -71,7 +71,7 @@
 
 ;; ## Basic:
 ;;
-;; <PRF>     ::= (PASSWORD:<string> INPUT:<u8vector>) -> <u8vector>
+;; <PRF>  ::= PASSWORD:<string> -> INPUT:<u8vector> -> <u8vector>
 ;;
 ;; ### <PRF>
 ;;
