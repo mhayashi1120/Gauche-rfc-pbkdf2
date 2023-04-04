@@ -57,7 +57,7 @@
     ['md5 <md5>]
     [(? (^x (subclass? x <message-digest-algorithm>)) clz)
      clz]
-    [else
+    [_
      (error "Not a supported hasher" hasher)]))
 
 ;; Heuristic compute octet size of digest generate by <PRF>
@@ -98,7 +98,7 @@
                password]
               [(? u8vector?)
                (u8vector->string password)]
-              [else
+              [_
                (error "Not a supported password")]))
 
   ;; -> <u8vector>
