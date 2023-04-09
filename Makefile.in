@@ -20,9 +20,11 @@ INSTALL        = "@GAUCHE_INSTALL@" -C
 PACKAGE   = Gauche-rfc-pbkdf2
 
 TARGET    =
-SCMFILES  = $(srcdir)/gauche_rfc_pbkdf2.scm
+SCMFILES  = $(srcdir)/rfc/pbkdf2.scm
 
-GENERATED =
+TEST_LOG = test.log
+
+GENERATED = $(TEST_LOG)
 CONFIG_GENERATED = Makefile config.cache config.log config.status \
 	configure.lineno autom4te*.cache $(PACKAGE).gpd
 
@@ -33,8 +35,8 @@ GAUCHE_PKGARCHDIR = "$(DESTDIR)@GAUCHE_PKGARCHDIR@"
 all : $(TARGET)
 
 check : all
-	@rm -f test.log
-	$(GOSH) -I. -I$(srcdir) $(srcdir)/test.scm > test.log
+	@rm -f $(TEST_LOG)
+	$(GOSH) -I. -I$(srcdir) $(srcdir)/test.scm > $(TEST_LOG)
 
 install : all
 	$(INSTALL) -m 444 -T $(GAUCHE_PKGLIBDIR) $(SCMFILES)
@@ -45,7 +47,7 @@ uninstall :
 	$(INSTALL) -U $(GAUCHE_PKGLIBDIR)/.packages $(PACKAGE).gpd
 
 clean :
-	rm -rf core $(TARGET) $(GENERATED) *~ test.log so_locations
+	rm -rf core $(TARGET) $(GENERATED) *~ so_locations
 
 distclean : clean
 	rm -rf $(CONFIG_GENERATED)
