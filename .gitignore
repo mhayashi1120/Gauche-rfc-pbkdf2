@@ -1,5 +1,6 @@
-Gauche-rfc-pbkdf2.gpd
+/Gauche-rfc-pbkdf2.gpd
+/VERSION
+/config.log
+/test.log
+
 Makefile
-VERSION
-config.log
-test.log
