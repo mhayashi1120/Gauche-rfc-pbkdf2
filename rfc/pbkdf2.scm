@@ -44,7 +44,9 @@
 (autoload rfc.md5 <md5>)
 (autoload rfc.sha1 <sha1> <sha224> <sha256> <sha384> <sha512>)
 (autoload rfc.hmac hmac-digest)
-(autoload gauche.vport open-input-bytevector open-output-bytevector get-output-bytevector)
+(autoload gauche.vport
+          open-input-bytevector
+          open-output-bytevector get-output-bytevector)
 
 ;; -> <message-digest-algorithm>
 (define (ensure-hasher hasher)
