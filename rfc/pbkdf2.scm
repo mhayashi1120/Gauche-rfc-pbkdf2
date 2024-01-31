@@ -145,10 +145,10 @@
          password iter len
          :key (hasher 'sha256) (salt #u8()))
   (let1 hasher* (ensure-hasher hasher)
-    (compute-pbkdf2 password iter len
-                    :prf (generate-hmac hasher*)
-                    :block-size (~ hasher*'hmac-block-size)
-                    :salt salt)))
+    ($ compute-pbkdf2 password iter len
+       :prf (generate-hmac hasher*)
+       :block-size (~ hasher*'hmac-block-size)
+       :salt salt)))
 
 ;; ## Generate common HMAC procedure.
 ;; NOTE: rfc2898 doesn't forcibly use HMAC (maybe i think...) but almost
